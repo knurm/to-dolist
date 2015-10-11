@@ -11,19 +11,19 @@ function addToDoToUl () {
     document.getElementById('posts').appendChild(new_todo);
 }
 
-function createDeleteButton () {
+function createDeleteButton (new_li) {
     var delButton = document.createElement("button");
     delButton.onclick = function() {
-        removeToDo(delButton);
+        removeToDo(new_li);
     };
     delButton.innerHTML = "x";
     return delButton;
 }
 
 function newToDo () {
-    var deleteButton = createDeleteButton();
     var text = document.getElementById('todo_input').value;
     var new_li = document.createElement("li");
+    var deleteButton = createDeleteButton(new_li);
     var new_span = document.createElement("span");
     new_span.innerHTML = text;
 
@@ -33,9 +33,6 @@ function newToDo () {
     return new_li;
 }
 
-/*function removeToDo (button_id) {
-
-    var parent = document.getElementById('button_id');
-    parent.parentNode.removeChild(parent);
-    // Removes a Todo (remove parent node)
-}*/
+function removeToDo (li) {
+    li.parentNode.removeChild(li);
+}
