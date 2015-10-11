@@ -3,34 +3,39 @@
  */
 function onAddToDoClicked () {
     addToDoToUl();
+    document.getElementById('todo_input').value = '';
 }
 
 function addToDoToUl () {
-    var newToDo = newToDo();
-    // Prepends a newToDo to ul
+    var new_todo = newToDo();
+    document.getElementById('posts').appendChild(new_todo);
 }
 
-function addDeleteButton () {
-
-    // OnClick removeToDo
-    // Returns a delete button
+function createDeleteButton () {
+    var delButton = document.createElement("button");
+    delButton.onclick = function() {
+        removeToDo(delButton);
+    };
+    delButton.innerHTML = "x";
+    return delButton;
 }
 
 function newToDo () {
-    var deleteButton = addDeleteButton();
-    // Creates a div
-    // Takes input value
-    // Puts input value and delete button into the div
-    // Returns newToDo
+    var deleteButton = createDeleteButton();
+    var text = document.getElementById('todo_input').value;
+    var new_li = document.createElement("li");
+    var new_span = document.createElement("span");
+    new_span.innerHTML = text;
+
+    new_li.appendChild(new_span);
+    new_li.appendChild(deleteButton);
+
+    return new_li;
 }
 
-function removeToDo (id) {
-    // Removes a ToDo
-}
+/*function removeToDo (button_id) {
 
-
-
-/*var post = document.getElementById('todo_input').value;
- document.getElementById('posts').innerHTML = post;
- //('<li>').text(post).prependTo('#posts');
- ('#todo_input').value = '';*/
+    var parent = document.getElementById('button_id');
+    parent.parentNode.removeChild(parent);
+    // Removes a Todo (remove parent node)
+}*/
